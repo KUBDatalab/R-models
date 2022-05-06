@@ -1,0 +1,81 @@
+---
+title: "Introduction"
+teaching: 0
+exercises: 0
+questions:
+- "What is a model?"
+objectives:
+- "First learning objective. (FIXME)"
+keypoints:
+- "First key point. Brief Answer to questions. (FIXME)"
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Struktur:
+
+Hvad er modeller?
+
+Den strukturerede tilgang - hvor vi bruger test data til at teste hvor
+godt det går. Ja! vi ved godt at det nok ikke er lige det I gør når 
+I laver en lineær model, typisk fordi I har for få data. Men det er det I burde
+gøre, så det er det vi viser. Vi viser også hvordan man lader være med at
+gøre det.
+
+
+Preampel: Nej, vi kommer ikke til at fitte lige præcis dine data til et eller
+andet. Når du går herfra, skulle du gerne kunne gøre det selv. 
+Vi kommer heller ikke til at tale om alle mulige modeller. 
+og du er også stadig nødt til at læse hvilke forudsætninger en given model har.
+
+
+"George Box puts this well in his famous aphorism:
+
+All models are wrong, but some are useful.
+
+
+It’s worth reading the fuller context of the quote:
+
+Now it would be very remarkable if any system existing in the real world could be exactly represented by any simple model. However, cunningly chosen parsimonious models often do provide remarkably useful approximations. For example, the law PV = RT relating pressure P, volume V and temperature T of an “ideal” gas via a constant R is not exactly true for any real gas, but it frequently provides a useful approximation and furthermore its structure is informative since it springs from a physical view of the behavior of gas molecules.
+
+For such a model there is no need to ask the question “Is the model true?”. If “truth” is to be the “whole truth” the answer must be “No”. The only question of interest is “Is the model illuminating and useful?”.
+
+The goal of a model is not to uncover truth, but to discover a simple approximation that is still useful."
+
+Hvorfor modeller?
+
+Hvad er en model?
+
+Hvad gør vi?
+
+Først definerer vi en familie af modeller
+
+Så fitter vi en model
+
+Og så bruger vi den måske til at forudsige verden/fremtiden etc.
+
+meget af det skulle kursisterne gerne vide lidt om i forvejen. Der
+er grænser for hvor meget manglende matematik vi kan rette op på.
+
+Men en simpel lineær model skulle de gerne kunne genkende.
+
+
+mod_diamond <- lm(lprice ~ lcarat, data = diamonds2)
+Then we look at what the model tells us about the data. Note that I back transform the predictions, undoing the log transformation, so I can overlay the predictions on the raw data:
+
+grid <- diamonds2 %>% 
+  data_grid(carat = seq_range(carat, 20)) %>% 
+  mutate(lcarat = log2(carat)) %>% 
+  add_predictions(mod_diamond, "lprice") %>% 
+  mutate(price = 2 ^ lprice)
+
+Vi tager nok udgangspunkt i tidy models. Det er i hvert fald der jeg gerne vil
+hen.
+
+
+{% include links.md %}
