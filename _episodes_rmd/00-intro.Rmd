@@ -16,6 +16,50 @@ keypoints:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+hvad er det vi prøver at forklare?
+
+Vi prøver at forklare hvorfor biler
+har den tophastighed de har.
+Vi har en ide om at det nok har noget 
+at gøre med deres vægt. Og med hvor
+mange hestekræfter deres motor kan 
+producere. 
+
+Der er sikkert meget andet der kan forklare det. Her måler vi hastigheden
+ved hvor længe de er om at køre en
+kvart mil
+
+```{r}
+mtcars$qsec
+lm(qsec~hp, data=mtcars)
+lm(qsec~disp, data=mtcars)
+lm(qsec~wt, data=mtcars)
+```
+hvad ser vi?
+
+Det giver os en model vi kan bruge til
+at forudsige hvor hurtigt en bil kan køre en kvart mil.
+
+Men er det en god model? Det finder vi 
+ud af ved at validere den. Vi tager nogle biler som vi ikke har brugt til
+at bygge vores model, hvor vi kender vægten og hastigheden, o så putter vi deres vægt ind i vores model. Eller hvilken
+parameter (eller parametre) vi nu har brugt til at bygge modellen. Og så ser vi hvor tæt vores forudsigelse kommer på virkeligheden
+
+Det kalder vi at validere vores model. Vi har noget data vi bruger til at bygge vores model. Og så har vi noget data som vi bruger til at teste vores model.
+
+Er det en god model?
+
+Det vi gør, er at forklare variationen i hastigheder, med variationen i eksempelvis vægt af bilen.
+
+Hvis vores model er perfekt, så forklarer vi al variationen. Det sker ret sjældent. Vores model forudsiger at en bil kan køre med en bestemt hastighed. Men den kan faktisk kun køre med en bestemt anden hastighed. Den forskel kalder vi for residualer. I flertal, for der er som regel mere end en bil involveret. 
+
+Når vi bygger vores model, træner den, forsøger vi at minimere disse residualer. de skal være så små som muligt, for så har vi forklaret så meget af variationen som muligt.
+
+Den simple lineære model vi kiggede på er den der ligger og gemmer sig bag stort set alle andre modeller. har vi forstået den, har vi forstået det meste af de andre. Det er derfor vi starter med den. 
+
+men der er mange andre modeller. De tager forskellige input, i forskellig rækkefølge. Og det er noget værre rod.
+
+Derfor tager vi nu en tidy tilgang til det. tidymodels og modelr pakker en masse forskellige modeller ind i noget kode, så vi kan tilgå dem på en ensartet måde. Det gør det langt lettere for os at lære at bruge mange forskellige modeller. Så vi kan koncentrere os om at forstå hvad en logistisk model gør, hvilke forudsætninger den har, og hvordan dens resultater skal fortolkes, i stedet for at tænke for meget over hvordan den linie kode vi skal skrive for at køre modellen skal skrues sammen. Det gør det også lettere at udskifte en model med en anden.
 
 Struktur:
 
